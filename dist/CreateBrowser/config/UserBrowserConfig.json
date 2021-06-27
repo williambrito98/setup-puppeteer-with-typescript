@@ -1,0 +1,21 @@
+{
+    "pathDownload": "",
+    "executablePath": "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe",
+    "headless": false,
+    "userDataDir": "",
+    "slowMo": 20,
+    "args": [
+        "--start-maximized",
+        "--enable-auto-reload",
+        "--disable-infobars",
+        "--no-default-browser-check"
+    ],
+    "ignoreHTTPSErrors": true,
+    "defaultViewport": {
+        "width": 1500,
+        "height": 1080
+    },
+    "ignoreDefaultArgs": [
+        "--enable-automation"
+    ]
+}
