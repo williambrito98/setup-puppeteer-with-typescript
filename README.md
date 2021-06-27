@@ -38,3 +38,10 @@ Compile Tyscript
 ```
 
 After compiling, the js files will be in the dist folder
+
+
+Run code Javascript
+```
+  node dist/index.js
+```
+
