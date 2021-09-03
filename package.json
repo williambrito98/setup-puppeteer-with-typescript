@@ -4,13 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "robot": "npx ts-node ./src/index.ts",
-    "dev": "./node_modules/.bin/babel src --extensions \".ts\" --out-dir dist --copy-files --no-copy-ignored"
+    "start": "npx ts-node ./src/index.ts",
+    "build": "./node_modules/.bin/babel src --extensions \".ts\" --out-dir dist --copy-files --no-copy-ignored"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/axios": "^0.14.0",
+    "axios": "^0.21.1",
     "puppeteer-core": "^10.0.0"
   },
   "devDependencies": {

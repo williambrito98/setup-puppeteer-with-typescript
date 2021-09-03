@@ -1,0 +1,11 @@
+{
+    "submit": {
+        "url": "http://2captcha.com/in.php",
+        "method": "base64"
+    },
+    "solution": {
+        "url": "http://2captcha.com/res.php",
+        "action": "get"
+    },
+    "key": ""
+}

@@ -1,28 +1,24 @@
 import { Browser, launch, Page } from 'puppeteer-core'
-import fs from 'fs'
-import path from 'path'
-import { ConfigUser } from './types/UserBrowserConfig'
+import CONFIG from './config/UserBrowserConfig.json'
 
 export default class CreateBrowser {
   private browser: Browser
   private page: Page
 
   async init () {
-    const pathConfigJson = path.join(path.resolve(), 'src', 'CreateBrowser', 'config', 'UserBrowserConfig.json')
-    const json = JSON.parse(fs.readFileSync(pathConfigJson, { encoding: 'utf-8' })) as ConfigUser
-    this.browser = await launch(json)
+    this.browser = await launch(CONFIG)
     this.page = await this.browser.newPage()
 
     this.page.setDefaultTimeout(80000)
     this.page.setDefaultNavigationTimeout(80000)
 
-    await this.page.setViewport(json.defaultViewport)
+    await this.page.setViewport(CONFIG.defaultViewport)
 
     this.page.on('dialog', async (dialog) => {
       await dialog.accept()
     })
 
-    this.page = await this.setLocalDownloadFiles(this.page, json.pathDownload)
+    this.page = await this.setLocalDownloadFiles(this.page, CONFIG.pathDownload)
     return { browser: this.browser, page: this.page }
   }
 
