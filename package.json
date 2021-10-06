@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "npx ts-node ./src/index.ts",
-    "build": "./node_modules/.bin/babel src --extensions \".ts\" --out-dir dist --copy-files --no-copy-ignored"
+    "build": "./node_modules/.bin/babel src --extensions \".ts\",\".env\" --out-dir dist --copy-files --no-copy-ignored && cp -r ./src/CreateBrowser/config/ dist/CreateBrowser/config/"
   },
   "keywords": [],
   "author": "",
@@ -13,6 +13,8 @@
   "dependencies": {
     "@types/axios": "^0.14.0",
     "axios": "^0.21.1",
+    "babel-plugin-inline-dotenv": "^1.6.0",
+    "dotenv": "^10.0.0",
     "puppeteer-core": "^10.0.0"
   },
   "devDependencies": {
@@ -31,7 +33,7 @@
     "eslint-plugin-import": "^2.23.4",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^5.1.0",
-    "ts-node-dev": "^1.1.6",
+    "ts-node-dev": "^1.1.8",
     "typescript": "^4.3.4"
   }
 }
