@@ -1,5 +1,6 @@
 import puppeteer, { Browser, Page } from 'puppeteer-core'
 import { config } from 'dotenv'
+import { listenClose } from '../Worker/listenWorker'
 config({ path: `${process.cwd()}/src/CreateBrowser/config/.env` })
 
 export default class CreateBrowser {
@@ -21,6 +22,7 @@ export default class CreateBrowser {
     })
 
     this.page = await this.setLocalDownloadFiles(this.page, CONFIG.pathDownload)
+    listenClose()
     return { browser: this.browser, page: this.page }
   }
 
@@ -36,8 +38,16 @@ export default class CreateBrowser {
 
   public async closeAll (browser: Browser) {
     const pages = await browser.pages()
-    pages.map(async p => p.close())
+    await this.closeAllPages(pages)
     await browser.close()
+  }
+
+  private async closeAllPages (pages : Array<Page>) {
+    if (pages.length === 0) {
+      return true
+    }
+    await pages.pop().close()
+    return this.closeAllPages(pages)
   }
 
   private setConfig () {
