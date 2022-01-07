@@ -1,7 +1,4 @@
 import puppeteer, { Browser, Page } from 'puppeteer-core'
-import { config } from 'dotenv'
-import { listenClose } from '../Worker/listenWorker'
-config({ path: `${process.cwd()}/src/CreateBrowser/config/.env` })
 
 export default class CreateBrowser {
   private browser: Browser
@@ -22,7 +19,7 @@ export default class CreateBrowser {
     })
 
     this.page = await this.setLocalDownloadFiles(this.page, CONFIG.pathDownload)
-    listenClose()
+
     return { browser: this.browser, page: this.page }
   }
 
@@ -47,7 +44,7 @@ export default class CreateBrowser {
       return true
     }
     await pages.pop().close()
-    return this.closeAllPages(pages)
+    return await this.closeAllPages(pages)
   }
 
   private setConfig () {
