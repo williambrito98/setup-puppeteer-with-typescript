@@ -6,6 +6,5 @@
     "solution": {
         "url": "http://2captcha.com/res.php",
         "action": "get"
-    },
-    "key": ""
+    }
 }

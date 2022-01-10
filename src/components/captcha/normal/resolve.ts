@@ -8,7 +8,7 @@ export async function resolveCaptcha () {
       axios.post(CONFIG.submit.url,
         {
           method: CONFIG.submit.method,
-          key: CONFIG.key,
+          key: process.env.SECRET_CAPTCHA_TOKEN,
           body: readFileSync(res('./src/components/captcha/normal/images/captcha.png'), { encoding: 'base64' })
         }).then(response => resolve(response.data.replace('OK|', '').trim()))
         .catch(error => reject(error))
@@ -19,7 +19,7 @@ export async function resolveCaptcha () {
       axios.get(CONFIG.solution.url, {
         params: {
           action: CONFIG.solution.action,
-          key: CONFIG.key,
+          key: process.env.SECRET_CAPTCHA_TOKEN,
           id: id
         }
       }).then(response => resolve(response.data))
